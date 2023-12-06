@@ -1,0 +1,11 @@
+{
+  "name": "@-/monorepo",
+  "type": "module",
+  "dependencies": {
+    "execa": "8.0.1"
+  },
+	"devDependencies": {
+		"@tunnel/prettier-config": "0.0.0"
+	},
+	"prettier": "@tunnel/prettier-config"
+}

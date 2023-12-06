@@ -1,0 +1,9 @@
+{
+  "name": "@-/cli-helpers",
+  "type": "module",
+  "dependencies": {
+    "cli-specs": "1.1.0",
+    "outdent": "0.8.0",
+    "which": "4.0.0"
+  }
+}
