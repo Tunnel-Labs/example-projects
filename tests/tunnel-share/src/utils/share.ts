@@ -24,9 +24,9 @@ export async function testTunnelShare({
 		'.tunnel/config.mts'
 	);
 
-	const exampleProjectConfig = (await import(
+	const { default: exampleProjectConfig } = (await import(
 		exampleProjectConfigFilepath
-	)) as ProjectConfig;
+	)) as { default: ProjectConfig };
 
 	const startCommand = await exampleProjectConfig.getStartCommand();
 
