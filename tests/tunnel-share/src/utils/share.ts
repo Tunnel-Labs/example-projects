@@ -34,7 +34,7 @@ export async function testTunnelShare({
 		testPackageSlug: 'tunnel-share',
 		exampleProjectSlug
 	});
-	await cli.bun(['install'], { cwd: testEnvDirpath });
+	await cli.bun(['install'], { cwd: testEnvDirpath, stdio: 'inherit' });
 
 	const startCommandProcess = execaCommand(startCommand);
 	await waitForLocalhost({ port: exampleProjectConfig.port });
