@@ -39,6 +39,7 @@ export async function createExampleProjectTestEnv({
 	const testPackageTestEnvDirpath = getTestPackageTestEnvDirpath({
 		testPackageSlug
 	});
+	await fs.promises.rm(testPackageTestEnvDirpath, { recursive: true });
 	await fs.promises.mkdir(testPackageTestEnvDirpath, { recursive: true });
 	await fs.promises.writeFile(
 		path.join(testPackageTestEnvDirpath, 'package.json'),
