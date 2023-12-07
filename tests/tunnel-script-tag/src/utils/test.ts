@@ -62,7 +62,7 @@ export async function testScriptTag({
 		// Open localhost in the browser and check that the script tag is present on the document
 		const page = await browser.newPage();
 		page.goto(`http://localhost:${port}`);
-		await expect(page.locator('tunnel-toolbar')).toBeVisible();
+		await expect(page.locator('tunnel-toolbar')).toBeInViewport();
 	} finally {
 		startCommandProcess.kill();
 	}
