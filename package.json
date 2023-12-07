@@ -2,6 +2,8 @@
   "name": "@-/monorepo",
   "type": "module",
   "dependencies": {
+		"@-/cli-helpers": "workspace:*",
+		"@-/project-config": "workspace:",
     "execa": "8.0.1"
   },
 	"devDependencies": {

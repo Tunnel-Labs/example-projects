@@ -1,0 +1,5 @@
+{
+	"name": "@-/project-config",
+	"type": "module",
+	"exports": "./src/$.ts"
+}

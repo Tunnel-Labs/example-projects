@@ -2,11 +2,11 @@ import { defineCliExecutable } from 'cli-specs';
 import { outdent } from 'outdent';
 import which from 'which';
 
-export const npm = defineCliExecutable({
-	executableName: 'npm',
-	executablePath: async () => which('npm'),
+export const node = defineCliExecutable({
+	executableName: 'node',
+	executablePath: async () => which('node'),
 	description: outdent`
-		npm
+		node
 	`,
 	defaultExecaOptions: {
 		stdout: 'inherit',

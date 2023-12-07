@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@-/cli-helpers':
+        specifier: workspace:*
+        version: link:cli-helpers
+      '@-/project-config':
+        specifier: 'workspace:'
+        version: link:project-config
       execa:
         specifier: 8.0.1
         version: 8.0.1
@@ -27,8 +33,14 @@ importers:
       which:
         specifier: 4.0.0
         version: 4.0.0
+    devDependencies:
+      '@types/which':
+        specifier: 3.0.3
+        version: 3.0.3
 
-  projects: {}
+  example-projects: {}
+
+  project-config: {}
 
 packages:
 
@@ -51,6 +63,10 @@ packages:
   /@types/http-cache-semantics@4.0.4:
     resolution: {integrity: sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==}
     dev: false
+
+  /@types/which@3.0.3:
+    resolution: {integrity: sha512-2C1+XoY0huExTbs8MQv1DuS5FS86+SEjdM9F/+GS61gg5Hqbtj8ZiDSx8MfWcyei907fIPbfPGCOrNUTnVHY1g==}
+    dev: true
 
   /ansi-align@3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}

@@ -1,3 +1,4 @@
 packages:
-  - projects
   - cli-helpers
+  - example-projects
+  - project-config
