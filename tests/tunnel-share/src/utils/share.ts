@@ -52,7 +52,7 @@ export async function testTunnelShare({
 
 	const tunnelappUrl = await new Promise((resolve) => {
 		tunnelShareProcess.stdout!.on('data', (data) => {
-			console.log(data.toString())
+			console.log(data.toString());
 			if (data.includes('URL')) {
 				resolve(data);
 			}

@@ -16,10 +16,11 @@
 	"devDependencies": {
 		"@tunnel/tun": "0.2.3",
 		"@tunnel/prettier-config": "0.0.0",
+		"@types/node": "20.10.4",
 		"eslint": "8.55.0",
 		"prettier": "3.1.0",
-		"vitest": "1.0.2",
-		"typescript": "5.3.3"
+		"typescript": "5.3.3",
+		"vitest": "1.0.2"
 	},
 	"prettier": "@tunnel/prettier-config"
 }
