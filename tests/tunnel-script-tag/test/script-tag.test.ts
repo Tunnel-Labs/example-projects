@@ -12,12 +12,12 @@ describe('tunnel <script> works with example projects', async () => {
 	)) {
 		let browser: Browser;
 		beforeAll(async () => {
-			browser = await chromium.launch();
+			browser = await chromium.launch({ headless: false });
 		});
 
-		afterAll(async () => {
-			await browser.close();
-		});
+		// afterAll(async () => {
+		// 	await browser.close();
+		// });
 
 		test(`tunnel <script> works with example project ${exampleProjectSlug}`, async () => {
 			const port = await getPort();

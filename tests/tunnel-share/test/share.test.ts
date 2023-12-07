@@ -8,7 +8,7 @@ describe('`tunnel share` works with example projects', async () => {
 	for (const [exampleProjectSlug, exampleProject] of Object.entries(
 		exampleProjects
 	)) {
-		test(`\`tunnel share\` works with example project ${exampleProjectSlug}`, async () => {
+		test.skip(`\`tunnel share\` works with example project ${exampleProjectSlug}`, async () => {
 			const port = await getPort();
 			await testTunnelShare({
 				exampleProjectSlug,

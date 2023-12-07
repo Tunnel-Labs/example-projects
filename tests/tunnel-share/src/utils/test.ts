@@ -41,24 +41,28 @@ export async function testTunnelShare({
 		cwd: testEnvDirpath,
 		env: startCommand.env
 	});
-	await waitForLocalhost({ port: exampleProjectConfig.port });
+	try {
+		await waitForLocalhost({ port });
 
-	const { process: tunnelShareProcess } = await cli.tunnel.getProcess(
-		['share', '.'],
-		{
-			cwd: testEnvDirpath,
-			stdio: 'pipe'
-		}
-	);
-
-	const tunnelappUrl = await new Promise((resolve) => {
-		tunnelShareProcess.stdout!.on('data', (data) => {
-			console.log(data.toString());
-			if (data.includes('URL')) {
-				resolve(data);
+		const { process: tunnelShareProcess } = await cli.tunnel.getProcess(
+			['share', '.'],
+			{
+				cwd: testEnvDirpath,
+				stdio: 'pipe'
 			}
-		});
-	});
+		);
 
-	console.log(tunnelappUrl);
+		const tunnelappUrl = await new Promise((resolve) => {
+			tunnelShareProcess.stdout!.on('data', (data) => {
+				console.log(data.toString());
+				if (data.includes('URL')) {
+					resolve(data);
+				}
+			});
+		});
+
+		console.log(tunnelappUrl);
+	} finally {
+		startCommandProcess.kill();
+	}
 }

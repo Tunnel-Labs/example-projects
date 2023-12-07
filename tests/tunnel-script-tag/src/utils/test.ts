@@ -55,10 +55,15 @@ export async function testScriptTag({
 		cwd: testEnvDirpath,
 		env: startCommand.env
 	});
-	await waitForLocalhost({ port });
 
-	// Open localhost in the browser and check that the script tag is present on the document
-	const page = await browser.newPage();
-	page.goto(`http://localhost:${port}`);
-	await expect(page.locator('text=modal title')).toBeVisible();
+	try {
+		await waitForLocalhost({ port });
+
+		// Open localhost in the browser and check that the script tag is present on the document
+		const page = await browser.newPage();
+		page.goto(`http://localhost:${port}`);
+		await expect(page.locator('tunnel-toolbar')).toBeVisible();
+	} finally {
+		startCommandProcess.kill();
+	}
 }
