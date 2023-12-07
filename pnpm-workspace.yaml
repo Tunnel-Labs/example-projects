@@ -1,4 +1,4 @@
 packages:
-  - cli-helpers
-  - example-projects
-  - project-config
+  - configuration/*
+  - projects
+  - tests/*

@@ -1,0 +1,8 @@
+{
+	"name": "@-/packages-config",
+	"type": "module",
+	"exports": "./src/$.ts",
+	"dependencies": {
+		"desm": "1.3.0"
+	}
+}

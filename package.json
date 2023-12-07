@@ -7,7 +7,8 @@
     "execa": "8.0.1"
   },
 	"devDependencies": {
-		"@tunnel/prettier-config": "0.0.0"
+		"@tunnel/prettier-config": "0.0.0",
+		"vitest": "1.0.2"
 	},
 	"prettier": "@tunnel/prettier-config"
 }

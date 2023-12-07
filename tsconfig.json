@@ -42,8 +42,13 @@
 		"**/node_modules"
 	],
 	"include": [
-		"./cli-helpers/**/*.ts",
-		"./project-config/**/*.ts",
-		"./example-projects/*/.tunnel/*.mts"
+		"vitest.workspace.ts",
+		"./configuration/cli-helpers/**/*.ts",
+		"./configuration/packages-config/**/*.ts",
+		"./configuration/project-config/**/*.ts",
+		"./example-projects/*/.tunnel/*.mts",
+		"tests/tunnel-script-tag/**/*.ts",
+		"helpers/tunnel-share/**/*.ts",
+		"tests/tunnel-wrapper/**/*.ts"
 	]
 }

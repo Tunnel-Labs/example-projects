@@ -1,0 +1,12 @@
+{
+	"name": "@-tests/tunnel-share",
+	"type": "module",
+	"dependencies": {
+		"@-/cli-helpers": "workspace:*",
+		"@-/packages-config": "workspace:*",
+		"@-/project-config": "workspace:*",
+		"pathe": "1.1.1",
+		"got": "14.0.0",
+		"wait-for-localhost": "4.0.1"
+	}
+}
