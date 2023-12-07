@@ -1,4 +1,7 @@
 {
 	"name": "@-tests/tunnel-wrapper",
-	"type": "module"
+	"type": "module",
+	"exports": {
+		"./types": "./src/types.ts"
+	}
 }

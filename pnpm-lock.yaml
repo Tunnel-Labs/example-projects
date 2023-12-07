@@ -92,6 +92,18 @@ importers:
         specifier: 1.1.1
         version: 1.1.1
 
+  configuration/test-environment:
+    devDependencies:
+      '@-tests/tunnel-script-tag':
+        specifier: workspace:*
+        version: link:../../tests/tunnel-script-tag
+      '@-tests/tunnel-share':
+        specifier: workspace:*
+        version: link:../../tests/tunnel-share
+      '@-tests/tunnel-wrapper':
+        specifier: workspace:*
+        version: link:../../tests/tunnel-wrapper
+
   configuration/test-helpers:
     dependencies:
       '@-/env':
@@ -117,7 +129,17 @@ importers:
         specifier: 1.1.1
         version: 1.1.1
 
-  tests/tunnel-script-tag: {}
+  tests/tunnel-script-tag:
+    dependencies:
+      '@-/test-helpers':
+        specifier: workspace:*
+        version: link:../../configuration/test-helpers
+      '@playwright/test':
+        specifier: 1.40.1
+        version: 1.40.1
+      playwright:
+        specifier: 1.40.1
+        version: 1.40.1
 
   tests/tunnel-share:
     dependencies:
@@ -142,6 +164,9 @@ importers:
       pathe:
         specifier: 1.1.1
         version: 1.1.1
+      playwright:
+        specifier: 1.40.1
+        version: 1.40.1
       wait-for-localhost:
         specifier: 4.0.1
         version: 4.0.1
@@ -680,6 +705,14 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@playwright/test@1.40.1:
+    resolution: {integrity: sha512-EaaawMTOeEItCRvfmkI9v6rBkF1svM8wjl/YPRrg2N2Wmp+4qJYkWtJsbew1szfKKDm6fPLy4YAanBhIlf9dWw==}
+    engines: {node: '>=16'}
+    hasBin: true
+    dependencies:
+      playwright: 1.40.1
+    dev: false
 
   /@rollup/rollup-android-arm-eabi@4.6.1:
     resolution: {integrity: sha512-0WQ0ouLejaUCRsL93GD4uft3rOmB8qoQMU05Kb8CmMtMBe7XUDLAltxVZI1q6byNqEtU7N1ZX1Vw5lIpgulLQA==}
@@ -1448,6 +1481,14 @@ packages:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
 
+  /fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -2040,6 +2081,22 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
     dev: true
+
+  /playwright-core@1.40.1:
+    resolution: {integrity: sha512-+hkOycxPiV534c4HhpfX6yrlawqVUzITRKwHAmYfmsVreltEl6fAZJ3DPfLMOODw0H3s1Itd6MDCWmP1fl/QvQ==}
+    engines: {node: '>=16'}
+    hasBin: true
+    dev: false
+
+  /playwright@1.40.1:
+    resolution: {integrity: sha512-2eHI7IioIpQ0bS1Ovg/HszsN/XKNwEG1kbzSDDmADpclKc7CyqkHw7Mg2JCz/bbCxg25QUPcjksoMW7JcIFQmw==}
+    engines: {node: '>=16'}
+    hasBin: true
+    dependencies:
+      playwright-core: 1.40.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: false
 
   /postcss@8.4.32:
     resolution: {integrity: sha512-D/kj5JNu6oo2EIy+XL/26JEDTlIbB8hw85G8StOE6L74RQAVVP5rej6wxCNqyMbR4RkPfqvezVbPw81Ngd6Kcw==}

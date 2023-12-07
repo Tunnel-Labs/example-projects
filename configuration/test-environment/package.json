@@ -1,0 +1,9 @@
+{
+	"name": "@-/test-environment",
+	"type": "module",
+	"devDependencies": {
+		"@-tests/tunnel-script-tag": "workspace:*",
+		"@-tests/tunnel-share": "workspace:*",
+		"@-tests/tunnel-wrapper": "workspace:*"
+	}
+}

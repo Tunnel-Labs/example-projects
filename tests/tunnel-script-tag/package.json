@@ -1,4 +1,12 @@
 {
 	"name": "@-tests/tunnel-script-tag",
-	"type": "module"
+	"type": "module",
+	"exports": {
+		"./types": "./src/types.ts"
+	},
+	"dependencies": {
+		"@-/test-helpers": "workspace:*",
+		"@playwright/test": "1.40.1",
+		"playwright": "1.40.1"
+	}
 }

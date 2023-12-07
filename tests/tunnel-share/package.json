@@ -1,6 +1,9 @@
 {
 	"name": "@-tests/tunnel-share",
 	"type": "module",
+	"exports": {
+		"./types": "./src/types.ts"
+	},
 	"dependencies": {
 		"@types/node": "20.10.4",
 		"@-/cli-helpers": "workspace:*",
@@ -9,6 +12,7 @@
 		"@-/test-helpers": "workspace:*",
 		"pathe": "1.1.1",
 		"got": "14.0.0",
+		"playwright": "1.40.1",
 		"wait-for-localhost": "4.0.1"
 	}
 }

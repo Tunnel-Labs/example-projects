@@ -9,5 +9,8 @@ await getEnvVariables();
 
 await cli.pnpm('exec vitest run -t=nextjs-app-dir --reporter=dot', {
 	stdio: 'inherit',
-	cwd: monorepoDirpath
+	cwd: monorepoDirpath,
+	env: {
+		CONTEXT:
+	}
 });
