@@ -7,14 +7,18 @@ import {
 } from '../../../src/utils/get-script-tag.ts';
 
 export default defineProjectConfig({
-	port: 3000,
 	async install() {
 		await cli.npm('install', {
 			cwd: this.fixtureDirpath
 		});
 	},
-	async getStartCommand() {
-		return `${await cli.pnpm.getExecutablePath()} run start`;
+	async getStartCommand({ port }) {
+		return {
+			env: {
+				PORT: String(port)
+			},
+			command: `${await cli.npm.getExecutablePath()} run start`
+		};
 	},
 	async addScriptTag({ projectDirpath, branch, projectId }) {
 		const replaceInFile = getReplaceInFile({ projectDirpath });

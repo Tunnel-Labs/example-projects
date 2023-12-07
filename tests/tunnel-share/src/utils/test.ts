@@ -1,21 +1,18 @@
 import { cli } from '@-/cli-helpers';
-import { monorepoDirpath } from '@-/packages-config';
-import {
-	getExampleProjects,
-	getExampleProjectsDirpath
-} from '@-/projects-config';
+import { getExampleProjectsDirpath } from '@-/projects-config';
 import type { ProjectConfig } from '@-/projects-config/types';
 import { createExampleProjectTestEnv } from '@-/test-helpers';
 
 import { execaCommand } from 'execa';
-import got from 'got';
 import path from 'pathe';
 import waitForLocalhost from 'wait-for-localhost';
 
 export async function testTunnelShare({
-	exampleProjectSlug
+	exampleProjectSlug,
+	port
 }: {
 	exampleProjectSlug: string;
+	port: number;
 }) {
 	const exampleProjectDirpath = path.join(
 		getExampleProjectsDirpath(),
@@ -31,7 +28,7 @@ export async function testTunnelShare({
 		exampleProjectConfigFilepath
 	)) as { default: ProjectConfig };
 
-	const startCommand = await exampleProjectConfig.getStartCommand();
+	const startCommand = await exampleProjectConfig.getStartCommand({ port });
 
 	const { testEnvDirpath } = await createExampleProjectTestEnv({
 		testPackageSlug: 'tunnel-share',
@@ -39,9 +36,10 @@ export async function testTunnelShare({
 	});
 	await cli.bun(['install'], { cwd: testEnvDirpath, stdio: 'inherit' });
 
-	const startCommandProcess = execaCommand(startCommand, {
+	const startCommandProcess = execaCommand(startCommand.command, {
 		stdio: 'inherit',
-		cwd: testEnvDirpath
+		cwd: testEnvDirpath,
+		env: startCommand.env
 	});
 	await waitForLocalhost({ port: exampleProjectConfig.port });
 

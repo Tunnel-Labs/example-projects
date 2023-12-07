@@ -1,8 +1,13 @@
 export interface ProjectConfig {
-	port: number;
 	fixtureDirpath: string;
 	install(this: ProjectConfig): Promise<void>;
-	getStartCommand(this: ProjectConfig): Promise<string>;
+	getStartCommand(
+		this: ProjectConfig,
+		args: { port: number }
+	): Promise<{
+		command: string;
+		env: Record<string, string>;
+	}>;
 	addScriptTag(args: {
 		projectDirpath: string;
 		projectId: string;

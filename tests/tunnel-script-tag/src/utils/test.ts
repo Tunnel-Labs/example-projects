@@ -1,25 +1,26 @@
 import { cli } from '@-/cli-helpers';
-import { monorepoDirpath } from '@-/packages-config';
 import type { ProjectConfig } from '@-/projects-config/types';
 import { createExampleProjectTestEnv } from '@-/test-helpers';
 
 import { execaCommand } from 'execa';
-import got from 'got';
 import path from 'pathe';
 import waitForLocalhost from 'wait-for-localhost';
 import { type Browser, expect } from '@playwright/test';
 import { getExampleProjectsDirpath } from '@-/projects-config';
+import getPort from 'get-port';
 
 export async function testScriptTag({
 	browser,
 	exampleProjectSlug,
 	projectId,
-	branch
+	branch,
+	port
 }: {
 	browser: Browser;
 	exampleProjectSlug: string;
 	projectId: string;
 	branch: string;
+	port: number;
 }) {
 	const exampleProjectDirpath = path.join(
 		getExampleProjectsDirpath(),
@@ -36,7 +37,7 @@ export async function testScriptTag({
 	)) as { default: ProjectConfig };
 
 	const { testEnvDirpath } = await createExampleProjectTestEnv({
-		testPackageSlug: 'tunnel-share',
+		testPackageSlug: 'tunnel-script-tag',
 		exampleProjectSlug
 	});
 
@@ -48,15 +49,16 @@ export async function testScriptTag({
 
 	await cli.bun(['install'], { cwd: testEnvDirpath, stdio: 'inherit' });
 
-	const startCommand = await exampleProjectConfig.getStartCommand();
-	const startCommandProcess = execaCommand(startCommand, {
+	const startCommand = await exampleProjectConfig.getStartCommand({ port });
+	const startCommandProcess = execaCommand(startCommand.command, {
 		stdio: 'inherit',
-		cwd: testEnvDirpath
+		cwd: testEnvDirpath,
+		env: startCommand.env
 	});
-	await waitForLocalhost({ port: exampleProjectConfig.port });
+	await waitForLocalhost({ port });
 
 	// Open localhost in the browser and check that the script tag is present on the document
 	const page = await browser.newPage();
-	page.goto(`http://localhost:${exampleProjectConfig.port}`);
+	page.goto(`http://localhost:${port}`);
 	await expect(page.locator('text=modal title')).toBeVisible();
 }

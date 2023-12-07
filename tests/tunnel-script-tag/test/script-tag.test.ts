@@ -3,6 +3,7 @@ import { afterAll, beforeAll, describe, test } from 'vitest';
 import { testScriptTag } from '../src/utils/test.ts';
 import { type Browser, chromium } from '@playwright/test';
 import { getTestEnvironment } from '@-/test-helpers';
+import getPort from 'get-port';
 
 describe('tunnel <script> works with example projects', async () => {
 	const exampleProjects = await getExampleProjects();
@@ -19,8 +20,10 @@ describe('tunnel <script> works with example projects', async () => {
 		});
 
 		test(`tunnel <script> works with example project ${exampleProjectSlug}`, async () => {
-			const { branch, projectId } = getTestEnvironment()
+			const port = await getPort();
+			const { branch, projectId } = getTestEnvironment();
 			await testScriptTag({
+				port,
 				exampleProjectSlug,
 				browser,
 				branch,

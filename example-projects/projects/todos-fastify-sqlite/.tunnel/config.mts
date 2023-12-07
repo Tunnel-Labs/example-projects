@@ -4,14 +4,16 @@ import { getReplaceInFile } from '../../../src/utils/get-script-tag.ts';
 import { outdent } from 'outdent';
 
 export default defineProjectConfig({
-	port: 3000,
 	async install() {
 		await cli.npm('install', {
 			cwd: this.fixtureDirpath
 		});
 	},
-	async getStartCommand() {
-		return `${await cli.node.getExecutablePath()} server.js`;
+	async getStartCommand({ port }) {
+		return {
+			command: `${await cli.node.getExecutablePath()} server.js`,
+			env: { PORT: String(port) }
+		};
 	},
 	async addScriptTag({ projectDirpath, branch, projectId }) {
 		const replaceInFile = getReplaceInFile({ projectDirpath });

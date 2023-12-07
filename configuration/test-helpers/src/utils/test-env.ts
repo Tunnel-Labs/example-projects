@@ -39,24 +39,23 @@ export async function createExampleProjectTestEnv({
 	const testPackageTestEnvDirpath = getTestPackageTestEnvDirpath({
 		testPackageSlug
 	});
-	await fs.promises.rm(testPackageTestEnvDirpath, {
-		recursive: true,
-		force: true
-	});
 	await fs.promises.mkdir(testPackageTestEnvDirpath, { recursive: true });
 	await fs.promises.writeFile(
 		path.join(testPackageTestEnvDirpath, 'package.json'),
 		JSON.stringify({ type: 'commonjs' })
 	);
 
-	// Copy the example project into .test-env/
-	const testEnvDirpath = getExampleProjectTestEnvDirpath({
+	const exampleProjectTestEnvDirpath = getExampleProjectTestEnvDirpath({
 		testPackageSlug,
 		exampleProjectSlug
 	});
-	await fs.promises.cp(exampleProjectDirpath, testEnvDirpath, {
+	await fs.promises.rm(exampleProjectTestEnvDirpath, {
+		recursive: true,
+		force: true
+	});
+	await fs.promises.cp(exampleProjectDirpath, exampleProjectTestEnvDirpath, {
 		recursive: true
 	});
 
-	return { testEnvDirpath };
+	return { testEnvDirpath: exampleProjectTestEnvDirpath };
 }
