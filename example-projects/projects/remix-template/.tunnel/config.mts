@@ -27,7 +27,7 @@ export default defineProjectConfig({
 			files: 'app/layout.tsx',
 			from: [/^/, '<html lang="en">'],
 			to: [
-				"import { TunnelToolbar } from '@tunnel/react'",
+				"import { TunnelToolbar } from '@tunnel/react'\n",
 				outdent`
 					<html lang="en">
 					<head>

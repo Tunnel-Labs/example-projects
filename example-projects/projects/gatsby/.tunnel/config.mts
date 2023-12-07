@@ -27,7 +27,7 @@ export default defineProjectConfig({
 			files: 'src/App.js',
 			from: [/^/, '<main style={pageStyles}>'],
 			to: [
-				"import { TunnelToolbar } from '@tunnel/react'",
+				"import { TunnelToolbar } from '@tunnel/react'\n",
 				outdent`
 					<main style={pageStyles}>
 					<TunnelToolbar

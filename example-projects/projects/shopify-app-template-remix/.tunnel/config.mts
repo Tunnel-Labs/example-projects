@@ -25,7 +25,7 @@ export default defineProjectConfig({
 			files: 'app/root.tsx',
 			from: [/^/, '<head>'],
 			to: [
-				"import { TunnelToolbar } from '@tunnel/react'",
+				"import { TunnelToolbar } from '@tunnel/react'\n",
 				outdent`
 					<head>
 					<TunnelToolbar

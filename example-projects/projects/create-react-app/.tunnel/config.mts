@@ -27,7 +27,7 @@ export default defineProjectConfig({
 			files: 'src/App.js',
 			from: [/^/, '<header className="App-header">'],
 			to: [
-				"import { TunnelToolbar } from '@tunnel/react'",
+				"import { TunnelToolbar } from '@tunnel/react'\n",
 				outdent`
 					<header className="App-header">
 					<TunnelToolbar
