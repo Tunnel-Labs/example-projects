@@ -1,0 +1,12 @@
+{
+	"name": "@-/test-helpers",
+	"type": "module",
+	"exports": "./src/$.ts",
+	"dependencies": {
+		"@-/packages-config": "workspace:*",
+		"pathe": "1.1.1"
+	},
+	"devDependencies": {
+		"@types/node": "20.10.4"
+	}
+}

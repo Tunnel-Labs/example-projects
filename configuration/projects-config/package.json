@@ -1,0 +1,13 @@
+{
+	"name": "@-/projects-config",
+	"type": "module",
+	"exports": {
+		".": "./src/$.ts",
+		"./types": "./src/types.ts"
+	},
+	"dependencies": {
+		"@-/packages-config": "workspace:*",
+		"map-obj": "5.0.2",
+		"pathe": "1.1.1"
+	}
+}

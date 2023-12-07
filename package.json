@@ -1,13 +1,18 @@
 {
-  "name": "@-/monorepo",
-  "type": "module",
-  "dependencies": {
+	"name": "@-/monorepo",
+	"type": "module",
+	"scripts": {
+		"test": "vitest run",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
 		"@-/cli-helpers": "workspace:*",
-		"@-/project-config": "workspace:",
-    "execa": "8.0.1"
-  },
+		"@-/projects-config": "workspace:",
+		"execa": "8.0.1"
+	},
 	"devDependencies": {
 		"@tunnel/prettier-config": "0.0.0",
+		"prettier": "3.1.0",
 		"vitest": "1.0.2"
 	},
 	"prettier": "@tunnel/prettier-config"

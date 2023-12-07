@@ -2,15 +2,12 @@ import { defineCliExecutable } from 'cli-specs';
 import { outdent } from 'outdent';
 import which from 'which';
 
-export const tunnel = defineCliExecutable({
-	executableName: 'tunnel',
-	executablePath: async () => which('tunnel'),
+export const bun = defineCliExecutable({
+	executableName: 'bun',
+	executablePath: async () => which('bun'),
 	description: outdent`
-		tunnel
+		bun
 	`,
-	async install() {
-		throw new Error('not implemented');
-	},
 	defaultExecaOptions: {
 		stdout: 'inherit',
 		stderr: 'inherit'

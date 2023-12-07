@@ -1,5 +1,5 @@
 import { cli } from '@-/cli-helpers';
-import { defineProjectConfig } from '@-/project-config';
+import { defineProjectConfig } from '@-/projects-config';
 
 export default defineProjectConfig({
 	port: 3000,
