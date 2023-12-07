@@ -1,5 +1,9 @@
 import { cli } from '@-/cli-helpers';
 import { monorepoDirpath } from '@-/packages-config';
+import {
+	getExampleProjects,
+	getExampleProjectsDirpath
+} from '@-/projects-config';
 import type { ProjectConfig } from '@-/projects-config/types';
 import { createExampleProjectTestEnv } from '@-/test-helpers';
 
@@ -14,8 +18,7 @@ export async function testTunnelShare({
 	exampleProjectSlug: string;
 }) {
 	const exampleProjectDirpath = path.join(
-		monorepoDirpath,
-		'projects',
+		getExampleProjectsDirpath(),
 		exampleProjectSlug
 	);
 

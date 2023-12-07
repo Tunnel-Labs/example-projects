@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'pathe';
 import { monorepoDirpath } from '@-/packages-config';
+import { getExampleProjectsDirpath } from '@-/projects-config';
 
 export function getTestPackageTestEnvDirpath({
 	testPackageSlug
@@ -31,8 +32,7 @@ export async function createExampleProjectTestEnv({
 	exampleProjectSlug: string;
 }) {
 	const exampleProjectDirpath = path.join(
-		monorepoDirpath,
-		'projects',
+		getExampleProjectsDirpath(),
 		exampleProjectSlug
 	);
 

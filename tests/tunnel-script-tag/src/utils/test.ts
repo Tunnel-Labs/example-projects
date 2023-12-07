@@ -8,6 +8,7 @@ import got from 'got';
 import path from 'pathe';
 import waitForLocalhost from 'wait-for-localhost';
 import { type Browser, expect } from '@playwright/test';
+import { getExampleProjectsDirpath } from '@-/projects-config';
 
 export async function testScriptTag({
 	browser,
@@ -21,8 +22,7 @@ export async function testScriptTag({
 	branch: string;
 }) {
 	const exampleProjectDirpath = path.join(
-		monorepoDirpath,
-		'projects',
+		getExampleProjectsDirpath(),
 		exampleProjectSlug
 	);
 

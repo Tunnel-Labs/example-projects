@@ -5,6 +5,7 @@
 	"dependencies": {
 		"@-/env": "workspace:*",
 		"@-/packages-config": "workspace:*",
+		"@-/test-environment": "workspace:*",
 		"pathe": "1.1.1"
 	},
 	"devDependencies": {

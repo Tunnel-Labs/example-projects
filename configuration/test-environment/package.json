@@ -1,6 +1,10 @@
 {
 	"name": "@-/test-environment",
 	"type": "module",
+	"exports": {
+		".": "./src/$.ts",
+		"./types": "./src/types.ts"
+	},
 	"devDependencies": {
 		"@-tests/tunnel-script-tag": "workspace:*",
 		"@-tests/tunnel-share": "workspace:*",

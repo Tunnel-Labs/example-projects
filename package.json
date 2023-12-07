@@ -6,7 +6,8 @@
 		"test": "./configuration/test-helpers/scripts/test.ts",
 		"format": "prettier --write .",
 		"lint": "eslint --cache --fix .",
-		"typecheck": "tsc"
+		"typecheck": "tsc",
+		"postinstall": "playwright install"
 	},
 	"dependencies": {
 		"@-/cli-helpers": "workspace:*",
@@ -18,6 +19,7 @@
 		"@tunnel/prettier-config": "0.0.0",
 		"@types/node": "20.10.4",
 		"eslint": "8.55.0",
+		"playwright": "1.40.1",
 		"prettier": "3.1.0",
 		"typescript": "5.3.3",
 		"vitest": "1.0.2"
