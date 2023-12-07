@@ -1,0 +1,11 @@
+{
+	"name": "@-/example-projects",
+	"type": "module",
+	"dependencies": {
+		"@-/cli-helpers": "workspace:*",
+		"@-/projects-config": "workspace:*",
+		"outdent": "0.8.0",
+		"pathe": "1.1.1",
+		"replace-in-file": "7.0.2"
+	}
+}

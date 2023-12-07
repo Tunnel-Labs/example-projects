@@ -35,8 +35,8 @@
 	"exclude": ["**/dist", "**/dist-*", "**/node_modules"],
 	"include": [
 		"vitest.workspace.ts",
-		"./configuration/**/*.ts",
-		"./projects/*/.tunnel/*.mts",
-		"./tests/**/*.ts"
+		"./configuration",
+		"./example-projects/projects/*/.tunnel/*.mts",
+		"./tests"
 	]
 }
