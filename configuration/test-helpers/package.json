@@ -3,10 +3,13 @@
 	"type": "module",
 	"exports": "./src/$.ts",
 	"dependencies": {
+		"@-/env": "workspace:*",
 		"@-/packages-config": "workspace:*",
 		"pathe": "1.1.1"
 	},
 	"devDependencies": {
-		"@types/node": "20.10.4"
+		"@types/node": "20.10.4",
+		"dotenv": "16.3.1",
+		"zod": "3.22.4"
 	}
 }

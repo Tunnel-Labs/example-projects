@@ -36,7 +36,10 @@ export async function testTunnelShare({
 	});
 	await cli.bun(['install'], { cwd: testEnvDirpath, stdio: 'inherit' });
 
-	const startCommandProcess = execaCommand(startCommand);
+	const startCommandProcess = execaCommand(startCommand, {
+		stdio: 'inherit',
+		cwd: testEnvDirpath
+	});
 	await waitForLocalhost({ port: exampleProjectConfig.port });
 
 	const { process: tunnelShareProcess } = await cli.tunnel.getProcess(
@@ -47,9 +50,14 @@ export async function testTunnelShare({
 		}
 	);
 
-	tunnelShareProcess.stdout!.on('data', (data) => {
-		if (data.includes('URL')) {
-			console.log(data);
-		}
+	const tunnelappUrl = await new Promise((resolve) => {
+		tunnelShareProcess.stdout!.on('data', (data) => {
+			console.log(data.toString())
+			if (data.includes('URL')) {
+				resolve(data);
+			}
+		});
 	});
+
+	console.log(tunnelappUrl);
 }
