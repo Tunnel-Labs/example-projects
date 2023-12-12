@@ -46,8 +46,7 @@ export async function testScriptTag({
 		branch: 'main',
 		projectId: 'test'
 	});
-
-	await cli.bun(['install'], { cwd: testEnvDirpath, stdio: 'inherit' });
+	await exampleProjectConfig.install({ projectDirpath: testEnvDirpath });
 
 	const startCommand = await exampleProjectConfig.getStartCommand({ port });
 	const startCommandProcess = execaCommand(startCommand.command, {

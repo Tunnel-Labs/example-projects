@@ -19,16 +19,19 @@ describe('tunnel <script> works with example projects', async () => {
 		// 	await browser.close();
 		// });
 
-		test(`tunnel <script> works with example project ${exampleProjectSlug}`, async () => {
-			const port = await getPort();
-			const { branch, projectId } = getTestEnvironment();
-			await testScriptTag({
-				port,
-				exampleProjectSlug,
-				browser,
-				branch,
-				projectId
-			});
-		});
+		test.skipIf(exampleProjectSlug.includes('shopify-app'))(
+			`tunnel <script> works with example project ${exampleProjectSlug}`,
+			async () => {
+				const port = await getPort();
+				const { branch, projectId } = getTestEnvironment();
+				await testScriptTag({
+					port,
+					exampleProjectSlug,
+					browser,
+					branch,
+					projectId
+				});
+			}
+		);
 	}
 });

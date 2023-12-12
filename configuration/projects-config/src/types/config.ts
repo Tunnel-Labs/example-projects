@@ -1,10 +1,6 @@
 export interface ProjectConfig {
-	fixtureDirpath: string;
-	install(this: ProjectConfig): Promise<void>;
-	getStartCommand(
-		this: ProjectConfig,
-		args: { port: number }
-	): Promise<{
+	install(args: { projectDirpath: string }): Promise<void>;
+	getStartCommand(args: { port: number }): Promise<{
 		command: string;
 		env: Record<string, string>;
 	}>;

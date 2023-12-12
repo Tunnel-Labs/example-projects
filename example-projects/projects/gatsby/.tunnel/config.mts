@@ -7,24 +7,25 @@ import {
 } from '../../../src/utils/get-script-tag.ts';
 
 export default defineProjectConfig({
-	async install() {
-		await cli.npm('install', {
-			cwd: this.fixtureDirpath
+	async install({ projectDirpath }) {
+		await cli.bun('install', {
+			cwd: projectDirpath
 		});
 	},
 	async getStartCommand({ port }) {
 		return {
 			command: `${await cli.npm.getExecutablePath()} run start`,
 			env: {
+				NODE_ENV: 'development',
 				PORT: String(port)
-			},
+			}
 		};
 	},
 	async addScriptTag({ projectDirpath, branch, projectId }) {
 		const replaceInFile = getReplaceInFile({ projectDirpath });
 		await addDependency({ replaceInFile, packageName: '@tunnel/react' });
 		await replaceInFile({
-			files: 'src/App.js',
+			files: 'src/pages/index.js',
 			from: [/^/, '<main style={pageStyles}>'],
 			to: [
 				"import { TunnelToolbar } from '@tunnel/react'\n",
