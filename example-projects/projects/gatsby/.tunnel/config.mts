@@ -8,7 +8,7 @@ import {
 
 export default defineProjectConfig({
 	async install({ projectDirpath }) {
-		await cli.bun('install', {
+		await cli.npm('install', {
 			cwd: projectDirpath
 		});
 	},

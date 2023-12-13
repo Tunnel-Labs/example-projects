@@ -6,7 +6,9 @@
 		"@-/env": "workspace:*",
 		"@-/packages-config": "workspace:*",
 		"@-/test-environment": "workspace:*",
-		"pathe": "1.1.1"
+		"pathe": "1.1.1",
+		"signal-exit": "4.1.0",
+		"tree-kill": "1.2.2"
 	},
 	"devDependencies": {
 		"dotenv": "16.3.1",

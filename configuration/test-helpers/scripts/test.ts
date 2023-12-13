@@ -8,7 +8,7 @@ import { defineTestEnvironment } from '@-/test-environment';
 // We call `getEnvVariables` early  throw an error if environment variables aren't properly set
 await getEnvVariables();
 
-await cli.pnpm('exec vitest run -t=gatsby --reporter=dot', {
+await cli.pnpm('exec vitest run --poolOptions.threads.isolate=false -t=gatsby --reporter=dot', {
 	stdio: 'inherit',
 	cwd: monorepoDirpath,
 	env: {

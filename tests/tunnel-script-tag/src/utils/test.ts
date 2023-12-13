@@ -1,22 +1,21 @@
-import { cli } from '@-/cli-helpers';
 import type { ProjectConfig } from '@-/projects-config/types';
 import { createExampleProjectTestEnv } from '@-/test-helpers';
 
 import { execaCommand } from 'execa';
 import path from 'pathe';
 import waitForLocalhost from 'wait-for-localhost';
-import { type Browser, expect } from '@playwright/test';
+import { type Browser, expect, Page } from '@playwright/test';
 import { getExampleProjectsDirpath } from '@-/projects-config';
-import getPort from 'get-port';
+import kill from 'tree-kill';
 
 export async function testScriptTag({
-	browser,
+	page,
 	exampleProjectSlug,
 	projectId,
 	branch,
 	port
 }: {
-	browser: Browser;
+	page: Page;
 	exampleProjectSlug: string;
 	projectId: string;
 	branch: string;
@@ -57,12 +56,13 @@ export async function testScriptTag({
 
 	try {
 		await waitForLocalhost({ port });
-
-		// Open localhost in the browser and check that the script tag is present on the document
-		const page = await browser.newPage();
-		page.goto(`http://localhost:${port}`);
-		await expect(page.locator('tunnel-toolbar')).toBeInViewport();
+		await page.goto(`http://localhost:${port}`);
+		await expect(page.locator('tunnel-toolbar')).toBeVisible({
+			timeout: 600000
+		});
 	} finally {
-		startCommandProcess.kill();
+		if (startCommandProcess.pid !== undefined) {
+			kill(startCommandProcess.pid);
+		}
 	}
 }

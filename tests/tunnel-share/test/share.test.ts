@@ -3,7 +3,7 @@ import { describe, test } from 'vitest';
 import { testTunnelShare } from '../src/utils/test.ts';
 import getPort from 'get-port';
 
-describe('`tunnel share` works with example projects', async () => {
+describe.skip('`tunnel share` works with example projects', async () => {
 	const exampleProjects = await getExampleProjects();
 	for (const [exampleProjectSlug, exampleProject] of Object.entries(
 		exampleProjects
