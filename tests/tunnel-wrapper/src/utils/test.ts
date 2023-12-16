@@ -5,7 +5,8 @@ import { createExampleProjectTestEnv } from '@-/test-helpers';
 import { ExecaChildProcess, execaCommand } from 'execa';
 import pWaitFor from 'p-wait-for';
 import path from 'pathe';
-import { BrowserContext, Page, expect } from '@playwright/test';
+import { expect } from 'playwright/test';
+import type { BrowserContext, Page } from 'playwright';
 import kill from 'tree-kill';
 
 export async function testTunnelWrapper({

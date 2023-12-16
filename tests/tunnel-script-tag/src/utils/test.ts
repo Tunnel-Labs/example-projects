@@ -4,18 +4,19 @@ import { createExampleProjectTestEnv } from '@-/test-helpers';
 import { execaCommand } from 'execa';
 import path from 'pathe';
 import pWaitFor from 'p-wait-for';
-import { type Browser, expect, Page, BrowserContext } from '@playwright/test';
+import { expect } from 'playwright/test';
+import type { Page } from 'playwright';
 import { getExampleProjectsDirpath } from '@-/projects-config';
 import kill from 'tree-kill';
 
 export async function testScriptTag({
-	browserContext,
+	page,
 	exampleProjectSlug,
 	projectId,
 	branch,
 	port
 }: {
-	browserContext: BrowserContext;
+	page: Page;
 	exampleProjectSlug: string;
 	projectId: string;
 	branch: string;
@@ -54,7 +55,6 @@ export async function testScriptTag({
 		env: startCommand.env
 	});
 
-	let page: Page | undefined;
 	try {
 		await pWaitFor(async () => {
 			try {
@@ -64,7 +64,6 @@ export async function testScriptTag({
 				return false;
 			}
 		});
-		page = await browserContext.newPage();
 		await page.goto(`http://localhost:${port}`);
 		await expect(
 			page.locator('tunnel-toolbar').getByText('Sign in')

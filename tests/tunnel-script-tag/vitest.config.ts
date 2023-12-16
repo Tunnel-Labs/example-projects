@@ -6,9 +6,11 @@ export default defineConfig({
 		testTimeout: 60_000,
 		setupFiles: './test/global-setup.ts',
 		pool: 'forks',
+		maxConcurrency: Number.MAX_SAFE_INTEGER,
 		poolOptions: {
 			forks: {
-				singleFork: true
+				singleFork: true,
+				isolate: false
 			}
 		},
 		reporters: ['dot']

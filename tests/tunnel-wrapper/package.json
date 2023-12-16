@@ -10,7 +10,7 @@
 		"@-/packages-config": "workspace:*",
 		"@-/test-environment": "workspace:*",
 		"@-/test-helpers": "workspace:*",
-		"@playwright/test": "1.40.1",
+		"playwright": "1.40.1",
 		"p-wait-for": "5.0.2",
 		"pathe": "1.1.1",
 		"get-port": "7.0.0",

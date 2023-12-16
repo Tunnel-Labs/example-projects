@@ -8,7 +8,6 @@
 		"@-/env": "workspace:*",
 		"@-/test-environment": "workspace:*",
 		"@-/test-helpers": "workspace:*",
-		"@playwright/test": "1.40.1",
 		"desm": "1.3.0",
 		"get-port": "7.0.0",
 		"p-wait-for": "5.0.2",

@@ -19,9 +19,10 @@ describe('tunnel <script> works with example projects', async () => {
 			async () => {
 				const { browserContext } = getGlobalThis();
 				const port = await getPort();
+				const page = await browserContext.newPage();
 				const { branch, projectId } = getTestEnvironment();
 				await testScriptTag({
-					browserContext,
+					page,
 					port,
 					exampleProjectSlug,
 					branch,

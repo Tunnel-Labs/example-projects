@@ -8,7 +8,12 @@ export default defineConfig({
 		pool: 'forks',
 		poolOptions: {
 			forks: {
-				singleFork: true
+				singleFork: true,
+				isolate: false
+			},
+			threads: {
+				singleThread: true,
+				isolate: false
 			}
 		},
 		reporters: ['dot']

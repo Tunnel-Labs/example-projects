@@ -1,4 +1,4 @@
-import { Browser, BrowserContext } from 'playwright';
+import type { Browser, BrowserContext } from 'playwright';
 
 export function getGlobalThis() {
 	return globalThis as unknown as {

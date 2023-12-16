@@ -15,7 +15,6 @@
 		"pathe": "1.1.1",
 		"get-port": "7.0.0",
 		"got": "14.0.0",
-		"p-wait-for": "5.0.2",
-		"playwright": "1.40.1"
+		"p-wait-for": "5.0.2"
 	}
 }
