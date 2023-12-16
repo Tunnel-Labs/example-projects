@@ -8,11 +8,11 @@ import {
 
 export default defineProjectConfig({
 	async install({ projectDirpath }) {
-		await cli.npm('install', { cwd: projectDirpath });
+		await cli.bun('install', { cwd: projectDirpath });
 	},
 	async getStartCommand({ port }) {
 		return {
-			command: `${await cli.npm.getExecutablePath()} run dev`,
+			command: `${await cli.bun.getExecutablePath()} run dev`,
 			env: {
 				PORT: String(port)
 			}

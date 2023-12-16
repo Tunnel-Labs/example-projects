@@ -8,14 +8,14 @@ import {
 
 export default defineProjectConfig({
 	async install({ projectDirpath }) {
-		await cli.npm('install', { cwd: projectDirpath });
+		await cli.bun('install', { cwd: projectDirpath });
 	},
 	async getStartCommand({ port }) {
 		return {
 			env: {
 				PORT: String(port)
 			},
-			command: `${await cli.npm.getExecutablePath()} run start`
+			command: `${await cli.bun.getExecutablePath()} run start`
 		};
 	},
 	async addScriptTag({ projectDirpath, branch, projectId }) {
