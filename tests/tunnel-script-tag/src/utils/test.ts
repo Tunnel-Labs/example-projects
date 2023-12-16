@@ -57,8 +57,8 @@ export async function testScriptTag({
 	let page: Page | undefined;
 
 	try {
-		page = await browserContext.newPage();
 		await waitForLocalhost({ port });
+		page = await browserContext.newPage();
 		await page.goto(`http://localhost:${port}`);
 		await expect(
 			page.locator('tunnel-toolbar').getByText('Sign in')
