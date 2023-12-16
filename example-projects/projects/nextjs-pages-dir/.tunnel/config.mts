@@ -23,16 +23,15 @@ export default defineProjectConfig({
 		await addDependency({ replaceInFile, packageName: '@tunnel/nextjs' });
 		await replaceInFile({
 			files: 'pages/_document.tsx',
-			from: [/^/, '<Head />'],
+			from: [/^/, '<body>'],
 			to: [
 				"import { TunnelToolbar } from '@tunnel/nextjs'\n",
 				outdent`
-					<Head>
+					<body>
 						<TunnelToolbar
 							projectId=${JSON.stringify(projectId)}
 							branch=${JSON.stringify(branch)}
 						/>
-					</Head>
 				`
 			]
 		});
