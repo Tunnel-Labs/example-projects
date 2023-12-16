@@ -5,11 +5,11 @@ import { outdent } from 'outdent';
 
 export default defineProjectConfig({
 	async install({ projectDirpath }) {
-		await cli.npm('install', { cwd: projectDirpath });
+		await cli.bun('install', { cwd: projectDirpath });
 	},
 	async getStartCommand({ port }) {
 		return {
-			command: `${await cli.node.getExecutablePath()} server.js`,
+			command: `${await cli.bun.getExecutablePath()} server.js`,
 			env: { PORT: String(port) }
 		};
 	},
