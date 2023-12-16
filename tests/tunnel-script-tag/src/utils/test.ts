@@ -4,18 +4,18 @@ import { createExampleProjectTestEnv } from '@-/test-helpers';
 import { execaCommand } from 'execa';
 import path from 'pathe';
 import waitForLocalhost from 'wait-for-localhost';
-import { type Browser, expect, Page } from '@playwright/test';
+import { type Browser, expect, Page, BrowserContext } from '@playwright/test';
 import { getExampleProjectsDirpath } from '@-/projects-config';
 import kill from 'tree-kill';
 
 export async function testScriptTag({
-	page,
+	browserContext,
 	exampleProjectSlug,
 	projectId,
 	branch,
 	port
 }: {
-	page: Page;
+	browserContext: BrowserContext;
 	exampleProjectSlug: string;
 	projectId: string;
 	branch: string;
@@ -54,7 +54,10 @@ export async function testScriptTag({
 		env: startCommand.env
 	});
 
+	let page: Page | undefined;
+
 	try {
+		page = await browserContext.newPage();
 		await waitForLocalhost({ port });
 		await page.goto(`http://localhost:${port}`);
 		await expect(
@@ -64,5 +67,7 @@ export async function testScriptTag({
 		if (startCommandProcess.pid !== undefined) {
 			kill(startCommandProcess.pid);
 		}
+
+		await page?.close();
 	}
 }

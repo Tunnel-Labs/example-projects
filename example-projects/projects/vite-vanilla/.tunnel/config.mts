@@ -4,10 +4,8 @@ import { getReplaceInFile } from '../../../src/utils/get-script-tag.ts';
 import { outdent } from 'outdent';
 
 export default defineProjectConfig({
-	async install() {
-		await cli.npm('install', {
-			cwd: this.fixtureDirpath
-		});
+	async install({ projectDirpath }) {
+		await cli.npm('install', { cwd: projectDirpath });
 	},
 	async getStartCommand({ port }) {
 		return {

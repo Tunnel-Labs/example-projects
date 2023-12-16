@@ -18,18 +18,16 @@ describe('tunnel <script> works with example projects', async () => {
 		test.concurrent(
 			`tunnel <script> works with example project ${exampleProjectSlug}`,
 			async () => {
-				const { browser, browserContext } = getGlobalThis();
-				const page = await browserContext.newPage();
+				const { browserContext } = getGlobalThis();
 				const port = await getPort();
 				const { branch, projectId } = getTestEnvironment();
 				await testScriptTag({
+					browserContext,
 					port,
 					exampleProjectSlug,
-					page,
 					branch,
 					projectId
 				});
-				await page.close();
 			}
 		);
 	}
