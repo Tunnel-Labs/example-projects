@@ -10,6 +10,7 @@
 		"@-/packages-config": "workspace:*",
 		"@-/test-environment": "workspace:*",
 		"@-/test-helpers": "workspace:*",
+		"filter-obj": "5.1.0",
 		"playwright": "1.40.1",
 		"p-wait-for": "5.0.2",
 		"pathe": "1.1.1",

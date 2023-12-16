@@ -1,6 +1,9 @@
 import { cli } from '@-/cli-helpers';
 import { defineProjectConfig } from '@-/projects-config';
-import { getReplaceInFile } from '../../../src/utils/get-script-tag.ts';
+import {
+	addDependency,
+	getReplaceInFile
+} from '../../../src/utils/get-script-tag.ts';
 import { outdent } from 'outdent';
 
 export default defineProjectConfig({
@@ -28,9 +31,11 @@ export default defineProjectConfig({
 			`
 		});
 	},
-	async addWrapperCommand({ port }) {
+	async addWrapperCommand({ projectDirpath, port }) {
+		const replaceInFile = getReplaceInFile({ projectDirpath });
+		await addDependency({ packageName: '@tunnel/cli', replaceInFile });
 		return {
-			command: `${await cli.tunnel.getExecutablePath()} ${port} -- ${await cli.node.getExecutablePath()} run dev`,
+			command: `tunnel ${port} -- ${await cli.node.getExecutablePath()} server.js`,
 			env: {}
 		};
 	}

@@ -43,7 +43,7 @@ export default defineProjectConfig({
 				"dev": "shopify app dev",
 			`,
 			to: outdent`
-				"dev": "tunnel ${port} -- shopify app dev",
+				"dev": "tunnel ${port} -- shopify app dev --port=PORT",
 			`
 		});
 	}

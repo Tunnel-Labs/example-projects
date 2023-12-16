@@ -49,7 +49,7 @@ export default defineProjectConfig({
 				"dev": "next dev",
 			`,
 			to: outdent`
-				"dev": "tunnel ${port} -- next dev",
+				"dev": "tunnel ${port} -- next dev --port=PORT",
 			`
 		});
 	}

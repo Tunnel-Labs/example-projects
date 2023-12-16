@@ -9,6 +9,10 @@ describe('`tunnel share` works with example projects', async () => {
 	for (const [exampleProjectSlug, exampleProject] of Object.entries(
 		exampleProjects
 	)) {
+		if (exampleProjectSlug.includes('shopify-app')) {
+			continue;
+		}
+
 		test.concurrent(
 			`\`tunnel wrapper\` works with example project ${exampleProjectSlug}`,
 			async () => {

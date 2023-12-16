@@ -45,7 +45,7 @@ export default defineProjectConfig({
 				"dev": "remix dev",
 			`,
 			to: outdent`
-				"dev": "tunnel ${port} -- remix dev",
+				"dev": "tunnel ${port} -- remix dev --port=PORT",
 			`
 		});
 	}

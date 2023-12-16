@@ -46,7 +46,7 @@ export default defineProjectConfig({
 				"start": "gatsby develop",
 			`,
 			to: outdent`
-				"start": "tunnel ${port} -- gatsby develop",
+				"start": "tunnel ${port} -- gatsby develop --port=PORT",
 			`
 		});
 	}

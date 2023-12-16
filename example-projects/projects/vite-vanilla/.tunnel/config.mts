@@ -40,8 +40,11 @@ export default defineProjectConfig({
 				"dev": "vite",
 			`,
 			to: outdent`
-				"dev": "tunnel ${port} -- vite",
+				"dev": "tunnel ${port} -- vite --port=PORT",
 			`
 		});
+		return {
+			command: `${await cli.bun.getExecutablePath()} run dev`
+		};
 	}
 });

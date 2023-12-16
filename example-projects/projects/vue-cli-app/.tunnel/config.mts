@@ -40,7 +40,7 @@ export default defineProjectConfig({
 				"serve": "vue-cli-service serve",
 			`,
 			to: outdent`
-				"serve": "tunnel ${port} -- vue-cli-service serve",
+				"serve": "tunnel ${port} -- vue-cli-service serve --port=PORT",
 			`
 		});
 	}

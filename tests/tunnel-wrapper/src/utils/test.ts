@@ -8,6 +8,7 @@ import path from 'pathe';
 import { expect } from 'playwright/test';
 import type { BrowserContext, Page } from 'playwright';
 import kill from 'tree-kill';
+import { excludeKeys } from 'filter-obj';
 
 export async function testTunnelWrapper({
 	browserContext,
@@ -32,8 +33,6 @@ export async function testTunnelWrapper({
 		exampleProjectConfigFilepath
 	)) as { default: ProjectConfig };
 
-	const startCommand = await exampleProjectConfig.getStartCommand({ port });
-
 	const { testEnvDirpath } = await createExampleProjectTestEnv({
 		testPackageSlug: 'tunnel-wrapper',
 		exampleProjectSlug
@@ -46,19 +45,24 @@ export async function testTunnelWrapper({
 			port
 		});
 
-	const wrapperCommandProcess = execaCommand(
-		wrapperStartCommandOrUndefined === undefined
-			? startCommand.command
-			: wrapperStartCommandOrUndefined.command,
-		{
+	let wrapperCommandProcess: ExecaChildProcess;
+	if (wrapperStartCommandOrUndefined === undefined) {
+		const startCommand = await exampleProjectConfig.getStartCommand({ port });
+		wrapperCommandProcess = execaCommand(startCommand.command, {
 			stdio: 'inherit',
 			cwd: testEnvDirpath,
-			env: {
-				...startCommand.env,
-				...wrapperStartCommandOrUndefined?.env
+			env: excludeKeys(startCommand.env ?? {}, ['PORT'])
+		});
+	} else {
+		wrapperCommandProcess = execaCommand(
+			wrapperStartCommandOrUndefined.command,
+			{
+				stdio: 'inherit',
+				cwd: testEnvDirpath,
+				env: wrapperStartCommandOrUndefined.env
 			}
-		}
-	);
+		);
+	}
 
 	let page: Page | undefined;
 	try {

@@ -45,7 +45,7 @@ export default defineProjectConfig({
 				"start": "BROWSER=none react-scripts start",
 			`,
 			to: outdent`
-				"start": "tunnel ${port} -- BROWSER=none react-scripts start",
+				"start": "tunnel ${port} -- BROWSER=none PORT=__PORT__ react-scripts start",
 			`
 		});
 	}
