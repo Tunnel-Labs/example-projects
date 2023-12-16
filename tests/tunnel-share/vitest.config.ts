@@ -1,7 +1,8 @@
-import { defineProject } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 
-export default defineProject({
+export default defineConfig({
 	test: {
+		exclude: [...configDefaults.exclude, '**/.test-env'],
 		testTimeout: 60_000
 	}
 });
