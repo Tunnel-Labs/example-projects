@@ -13,6 +13,7 @@
 		"@playwright/test": "1.40.1",
 		"p-wait-for": "5.0.2",
 		"pathe": "1.1.1",
-		"get-port": "7.0.0"
+		"get-port": "7.0.0",
+		"tree-kill": "1.2.2"
 	}
 }

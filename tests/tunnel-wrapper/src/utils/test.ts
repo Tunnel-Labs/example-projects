@@ -2,10 +2,11 @@ import { getExampleProjectsDirpath } from '@-/projects-config';
 import type { ProjectConfig } from '@-/projects-config/types';
 import { createExampleProjectTestEnv } from '@-/test-helpers';
 
-import { execaCommand } from 'execa';
+import { ExecaChildProcess, execaCommand } from 'execa';
 import pWaitFor from 'p-wait-for';
 import path from 'pathe';
-import { BrowserContext } from '@playwright/test';
+import { BrowserContext, Page, expect } from '@playwright/test';
+import kill from 'tree-kill';
 
 export async function testTunnelWrapper({
 	browserContext,
@@ -38,11 +39,25 @@ export async function testTunnelWrapper({
 	});
 	await exampleProjectConfig.install({ projectDirpath: testEnvDirpath });
 
-	const startCommandProcess = execaCommand(startCommand.command, {
-		stdio: 'inherit',
-		cwd: testEnvDirpath,
-		env: startCommand.env
-	});
+	const wrapperStartCommandOrUndefined =
+		await exampleProjectConfig.addWrapperCommand({
+			projectDirpath: testEnvDirpath,
+			port
+		});
+
+	const wrapperCommandProcess = execaCommand(
+		wrapperStartCommandOrUndefined === undefined
+			? startCommand.command
+			: wrapperStartCommandOrUndefined.command,
+		{
+			stdio: 'inherit',
+			cwd: testEnvDirpath,
+			env: {
+				...startCommand.env,
+				...wrapperStartCommandOrUndefined?.env
+			}
+		}
+	);
 
 	let page: Page | undefined;
 	try {
@@ -60,8 +75,8 @@ export async function testTunnelWrapper({
 			page.locator('tunnel-toolbar').getByText('Sign in')
 		).toBeVisible();
 	} finally {
-		if (startCommandProcess.pid !== undefined) {
-			kill(startCommandProcess.pid);
+		if (wrapperCommandProcess.pid !== undefined) {
+			kill(wrapperCommandProcess.pid);
 		}
 
 		await page?.close();

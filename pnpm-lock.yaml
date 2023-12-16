@@ -260,6 +260,9 @@ importers:
       pathe:
         specifier: 1.1.1
         version: 1.1.1
+      tree-kill:
+        specifier: 1.2.2
+        version: 1.2.2
 
 packages:
 
