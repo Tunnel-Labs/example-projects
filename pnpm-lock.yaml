@@ -197,12 +197,18 @@ importers:
       '@-/cli-helpers':
         specifier: workspace:*
         version: link:../../configuration/cli-helpers
+      '@-/env':
+        specifier: workspace:*
+        version: link:../../configuration/env
       '@-/packages-config':
         specifier: workspace:*
         version: link:../../configuration/packages-config
       '@-/projects-config':
         specifier: workspace:*
         version: link:../../configuration/projects-config
+      '@-/test-environment':
+        specifier: workspace:*
+        version: link:../../configuration/test-environment
       '@-/test-helpers':
         specifier: workspace:*
         version: link:../../configuration/test-helpers
