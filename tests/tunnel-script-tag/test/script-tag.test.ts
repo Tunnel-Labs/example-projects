@@ -5,6 +5,8 @@ import { type Browser, chromium, Page } from '@playwright/test';
 import { getTestEnvironment } from '@-/test-helpers';
 import getPort from 'get-port';
 
+const browser = await chromium.launch();
+
 describe('tunnel <script> works with example projects', async () => {
 	const exampleProjects = await getExampleProjects();
 	for (const [exampleProjectSlug, exampleProject] of Object.entries(
@@ -13,7 +15,7 @@ describe('tunnel <script> works with example projects', async () => {
 		test.skipIf(exampleProjectSlug.includes('shopify-app'))(
 			`tunnel <script> works with example project ${exampleProjectSlug}`,
 			async () => {
-				const page = await global.browser.newPage();
+				const page = await browser.newPage();
 				const port = await getPort();
 				const { branch, projectId } = getTestEnvironment();
 				await testScriptTag({

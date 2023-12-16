@@ -3,7 +3,6 @@
 	"root": true,
 	"type": "module",
 	"scripts": {
-		"test": "./configuration/test-helpers/scripts/test.ts",
 		"format": "prettier --write .",
 		"lint": "eslint --cache --fix .",
 		"typecheck": "tsc",

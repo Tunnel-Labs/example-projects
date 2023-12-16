@@ -5,6 +5,8 @@
 		"./types": "./src/types.ts"
 	},
 	"dependencies": {
+		"@-/env": "workspace:*",
+		"@-/test-environment": "workspace:*",
 		"@-/test-helpers": "workspace:*",
 		"@playwright/test": "1.40.1",
 		"desm": "1.3.0",

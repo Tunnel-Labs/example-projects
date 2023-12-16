@@ -1,12 +1,8 @@
-import { defineProject, configDefaults } from 'vitest/config';
+import { configDefaults, UserProjectConfigExport } from 'vitest/config';
 
-export default defineProject({
+export default {
 	test: {
 		exclude: [...configDefaults.exclude, '**/.test-env'],
-		testTimeout: 60_000,
-		globalSetup: './test/global-setup.ts',
-		poolOptions: {
-			isolate: false
-		}
+		testTimeout: 60_000
 	}
-});
+} satisfies UserProjectConfigExport;

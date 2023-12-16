@@ -1,0 +1,2 @@
+env:
+  PATH: '$HOME/.pkgx/nodejs.org/v20.9.0/bin:$HOME/.pkgx/pnpm.io/v8.9.2/bin:$PWD/development/npm-package-development/src/bin:$PWD/node_modules/.bin:$PATH'

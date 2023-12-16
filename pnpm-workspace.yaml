@@ -1,4 +1,5 @@
 packages:
   - configuration/*
+  - example-projects
   - projects
   - tests/*
