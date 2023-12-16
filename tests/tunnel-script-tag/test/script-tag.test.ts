@@ -3,7 +3,6 @@ import { describe, test } from 'vitest';
 import { testScriptTag } from '../src/utils/test.ts';
 import { getTestEnvironment } from '@-/test-helpers';
 import getPort from 'get-port';
-import { Browser } from 'playwright';
 import { getGlobalThis } from './utils/global-this.ts';
 
 describe('tunnel <script> works with example projects', async () => {

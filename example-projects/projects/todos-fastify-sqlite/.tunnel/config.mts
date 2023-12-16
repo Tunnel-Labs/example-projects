@@ -27,5 +27,11 @@ export default defineProjectConfig({
 				></script>
 			`
 		});
+	},
+	async addWrapperCommand({ port }) {
+		return {
+			command: `${await cli.tunnel.getExecutablePath()} ${port} -- ${await cli.node.getExecutablePath()} run dev`,
+			env: {}
+		};
 	}
 });

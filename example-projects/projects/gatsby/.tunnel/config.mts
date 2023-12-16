@@ -36,5 +36,18 @@ export default defineProjectConfig({
 				`
 			]
 		});
+	},
+	async addWrapperCommand({ projectDirpath, port }) {
+		const replaceInFile = getReplaceInFile({ projectDirpath });
+		await addDependency({ packageName: '@tunnel/cli', replaceInFile });
+		await replaceInFile({
+			files: 'package.json',
+			from: outdent`
+				"start": "gatsby develop",
+			`,
+			to: outdent`
+				"start": "tunnel ${port} -- gatsby develop",
+			`
+		});
 	}
 });

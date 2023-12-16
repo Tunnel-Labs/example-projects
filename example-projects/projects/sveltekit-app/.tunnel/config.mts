@@ -1,6 +1,9 @@
 import { cli } from '@-/cli-helpers';
 import { defineProjectConfig } from '@-/projects-config';
-import { getReplaceInFile } from '../../../src/utils/get-script-tag.ts';
+import {
+	addDependency,
+	getReplaceInFile
+} from '../../../src/utils/get-script-tag.ts';
 import { outdent } from 'outdent';
 
 export default defineProjectConfig({
@@ -25,6 +28,19 @@ export default defineProjectConfig({
 					data-project-id=${JSON.stringify(projectId)}
 					data-branch=${JSON.stringify(branch)}
 				></script>
+			`
+		});
+	},
+	async addWrapperCommand({ projectDirpath, port }) {
+		const replaceInFile = getReplaceInFile({ projectDirpath });
+		await addDependency({ packageName: '@tunnel/cli', replaceInFile });
+		await replaceInFile({
+			files: 'package.json',
+			from: outdent`
+				"dev": "vite dev",
+			`,
+			to: outdent`
+				"dev": "tunnel ${port} -- vite dev",
 			`
 		});
 	}

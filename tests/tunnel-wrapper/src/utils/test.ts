@@ -1,24 +1,19 @@
+import { getExampleProjectsDirpath } from '@-/projects-config';
 import type { ProjectConfig } from '@-/projects-config/types';
 import { createExampleProjectTestEnv } from '@-/test-helpers';
 
 import { execaCommand } from 'execa';
-import path from 'pathe';
 import pWaitFor from 'p-wait-for';
-import { type Browser, expect, Page, BrowserContext } from '@playwright/test';
-import { getExampleProjectsDirpath } from '@-/projects-config';
-import kill from 'tree-kill';
+import path from 'pathe';
+import { BrowserContext } from '@playwright/test';
 
-export async function testScriptTag({
+export async function testTunnelWrapper({
 	browserContext,
 	exampleProjectSlug,
-	projectId,
-	branch,
 	port
 }: {
 	browserContext: BrowserContext;
 	exampleProjectSlug: string;
-	projectId: string;
-	branch: string;
 	port: number;
 }) {
 	const exampleProjectDirpath = path.join(
@@ -35,19 +30,14 @@ export async function testScriptTag({
 		exampleProjectConfigFilepath
 	)) as { default: ProjectConfig };
 
-	const { testEnvDirpath } = await createExampleProjectTestEnv({
-		testPackageSlug: 'tunnel-script-tag',
-		exampleProjectSlug
-	});
+	const startCommand = await exampleProjectConfig.getStartCommand({ port });
 
-	await exampleProjectConfig.addScriptTag({
-		projectDirpath: testEnvDirpath,
-		branch: 'main',
-		projectId: 'test'
+	const { testEnvDirpath } = await createExampleProjectTestEnv({
+		testPackageSlug: 'tunnel-wrapper',
+		exampleProjectSlug
 	});
 	await exampleProjectConfig.install({ projectDirpath: testEnvDirpath });
 
-	const startCommand = await exampleProjectConfig.getStartCommand({ port });
 	const startCommandProcess = execaCommand(startCommand.command, {
 		stdio: 'inherit',
 		cwd: testEnvDirpath,

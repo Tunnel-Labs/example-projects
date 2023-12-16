@@ -231,7 +231,35 @@ importers:
         specifier: 1.40.1
         version: 1.40.1
 
-  tests/tunnel-wrapper: {}
+  tests/tunnel-wrapper:
+    dependencies:
+      '@-/cli-helpers':
+        specifier: workspace:*
+        version: link:../../configuration/cli-helpers
+      '@-/env':
+        specifier: workspace:*
+        version: link:../../configuration/env
+      '@-/packages-config':
+        specifier: workspace:*
+        version: link:../../configuration/packages-config
+      '@-/test-environment':
+        specifier: workspace:*
+        version: link:../../configuration/test-environment
+      '@-/test-helpers':
+        specifier: workspace:*
+        version: link:../../configuration/test-helpers
+      '@playwright/test':
+        specifier: 1.40.1
+        version: 1.40.1
+      get-port:
+        specifier: 7.0.0
+        version: 7.0.0
+      p-wait-for:
+        specifier: 5.0.2
+        version: 5.0.2
+      pathe:
+        specifier: 1.1.1
+        version: 1.1.1
 
 packages:
 

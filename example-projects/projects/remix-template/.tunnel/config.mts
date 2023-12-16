@@ -35,5 +35,18 @@ export default defineProjectConfig({
 				`
 			]
 		});
+	},
+	async addWrapperCommand({ projectDirpath, port }) {
+		const replaceInFile = getReplaceInFile({ projectDirpath });
+		await addDependency({ packageName: '@tunnel/cli', replaceInFile });
+		await replaceInFile({
+			files: 'package.json',
+			from: outdent`
+				"dev": "remix dev",
+			`,
+			to: outdent`
+				"dev": "tunnel ${port} -- remix dev",
+			`
+		});
 	}
 });
