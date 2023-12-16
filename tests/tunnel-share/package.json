@@ -13,7 +13,7 @@
 		"pathe": "1.1.1",
 		"get-port": "7.0.0",
 		"got": "14.0.0",
-		"playwright": "1.40.1",
-		"wait-for-localhost": "4.0.1"
+		"p-wait-for": "5.0.2",
+		"playwright": "1.40.1"
 	}
 }

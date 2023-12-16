@@ -179,6 +179,9 @@ importers:
       get-port:
         specifier: 7.0.0
         version: 7.0.0
+      p-wait-for:
+        specifier: 5.0.2
+        version: 5.0.2
       playwright:
         specifier: 1.40.1
         version: 1.40.1
@@ -209,15 +212,15 @@ importers:
       got:
         specifier: 14.0.0
         version: 14.0.0
+      p-wait-for:
+        specifier: 5.0.2
+        version: 5.0.2
       pathe:
         specifier: 1.1.1
         version: 1.1.1
       playwright:
         specifier: 1.40.1
         version: 1.40.1
-      wait-for-localhost:
-        specifier: 4.0.1
-        version: 4.0.1
 
   tests/tunnel-wrapper: {}
 
@@ -2089,10 +2092,22 @@ packages:
       p-limit: 3.1.0
     dev: true
 
+  /p-timeout@6.1.2:
+    resolution: {integrity: sha512-UbD77BuZ9Bc9aABo74gfXhNvzC9Tx7SxtHSh1fxvx3jTLLYvmVhiQZZrJzqqU0jKbN32kb5VOKiLEQI/3bIjgQ==}
+    engines: {node: '>=14.16'}
+    dev: false
+
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
     dev: true
+
+  /p-wait-for@5.0.2:
+    resolution: {integrity: sha512-lwx6u1CotQYPVju77R+D0vFomni/AqRfqLmqQ8hekklqZ6gAY9rONh7lBQ0uxWMkC2AuX9b2DVAl8To0NyP1JA==}
+    engines: {node: '>=12'}
+    dependencies:
+      p-timeout: 6.1.2
+    dev: false
 
   /parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -2682,11 +2697,6 @@ packages:
       - supports-color
       - terser
     dev: true
-
-  /wait-for-localhost@4.0.1:
-    resolution: {integrity: sha512-/q7fnGj3ATD4myCqlH3ZB/soX3cFZAztMvZgxOv0bZ7+8MsBUQrxIVrUkLsmro0qZAI5L9/QLGhJ0RsTfCmIbQ==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dev: false
 
   /which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}

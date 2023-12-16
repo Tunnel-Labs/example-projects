@@ -18,7 +18,7 @@ fastify.register(require('./db'))
 
 fastify.register(require('./routes/index'))
 
-fastify.listen(3000, (err) => {
+fastify.listen(process.env.PORT, (err) => {
   if (err) {
     fastify.log.error(err)
     process.exit(1)

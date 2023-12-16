@@ -9,10 +9,8 @@ export default defineProjectConfig({
 	},
 	async getStartCommand({ port }) {
 		return {
-			command: `${await cli.npm.getExecutablePath()} run dev`,
-			env: {
-				PORT: String(port)
-			}
+			command: `${await cli.npm.getExecutablePath()} run dev -- --port=${port}`,
+			env: {}
 		};
 	},
 	async addScriptTag({ projectDirpath, branch, projectId }) {

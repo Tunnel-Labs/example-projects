@@ -22,18 +22,16 @@ export default defineProjectConfig({
 		const replaceInFile = getReplaceInFile({ projectDirpath });
 		await addDependency({ replaceInFile, packageName: '@tunnel/react' });
 		await replaceInFile({
-			files: 'app/layout.tsx',
-			from: [/^/, '<html lang="en">'],
+			files: 'app/root.tsx',
+			from: [/^/, '<head>'],
 			to: [
 				"import { TunnelToolbar } from '@tunnel/react'\n",
 				outdent`
-					<html lang="en">
 					<head>
 						<TunnelToolbar
 							projectId=${JSON.stringify(projectId)}
 							branch=${JSON.stringify(branch)}
 						/>
-					</head>
 				`
 			]
 		});

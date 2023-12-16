@@ -3,7 +3,7 @@ import { createExampleProjectTestEnv } from '@-/test-helpers';
 
 import { execaCommand } from 'execa';
 import path from 'pathe';
-import waitForLocalhost from 'wait-for-localhost';
+import pWaitFor from 'p-wait-for';
 import { type Browser, expect, Page, BrowserContext } from '@playwright/test';
 import { getExampleProjectsDirpath } from '@-/projects-config';
 import kill from 'tree-kill';
@@ -57,7 +57,14 @@ export async function testScriptTag({
 	let page: Page | undefined;
 
 	try {
-		await waitForLocalhost({ port });
+		await pWaitFor(async () => {
+			try {
+				const response = await fetch(`http://localhost:${port}`);
+				return response.status === 200;
+			} catch {
+				return false;
+			}
+		});
 		page = await browserContext.newPage();
 		await page.goto(`http://localhost:${port}`);
 		await expect(

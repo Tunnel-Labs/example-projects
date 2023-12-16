@@ -1,7 +1,6 @@
 import { cli } from '@-/cli-helpers';
 import { defineProjectConfig } from '@-/projects-config';
 import { outdent } from 'outdent';
-import path from 'pathe';
 import {
 	addDependency,
 	getReplaceInFile
@@ -23,18 +22,17 @@ export default defineProjectConfig({
 		const replaceInFile = getReplaceInFile({ projectDirpath });
 		await addDependency({ replaceInFile, packageName: '@tunnel/nextjs' });
 		await replaceInFile({
-			files: 'app/layout.tsx',
-			from: [/^/, '<html lang="en">'],
+			files: 'pages/_document.tsx',
+			from: [/^/, '<Head />'],
 			to: [
 				"import { TunnelToolbar } from '@tunnel/nextjs'\n",
 				outdent`
-					<html lang="en">
-					<head>
+					<Head>
 						<TunnelToolbar
 							projectId=${JSON.stringify(projectId)}
 							branch=${JSON.stringify(branch)}
 						/>
-					</head>
+					</Head>
 				`
 			]
 		});

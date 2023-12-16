@@ -4,8 +4,8 @@ import type { ProjectConfig } from '@-/projects-config/types';
 import { createExampleProjectTestEnv } from '@-/test-helpers';
 
 import { execaCommand } from 'execa';
+import pWaitFor from 'p-wait-for';
 import path from 'pathe';
-import waitForLocalhost from 'wait-for-localhost';
 
 export async function testTunnelShare({
 	exampleProjectSlug,
@@ -42,7 +42,14 @@ export async function testTunnelShare({
 		env: startCommand.env
 	});
 	try {
-		await waitForLocalhost({ port });
+		await pWaitFor(async () => {
+			try {
+				const response = await fetch(`http://localhost:${port}`);
+				return response.status === 200;
+			} catch {
+				return false;
+			}
+		});
 
 		const { process: tunnelShareProcess } = await cli.tunnel.getProcess(
 			['share', '.'],
