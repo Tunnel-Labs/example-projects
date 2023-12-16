@@ -57,9 +57,9 @@ export async function testScriptTag({
 	try {
 		await waitForLocalhost({ port });
 		await page.goto(`http://localhost:${port}`);
-		await expect(page.locator('tunnel-toolbar')).toBeVisible({
-			timeout: 600000
-		});
+		await expect(
+			page.locator('tunnel-toolbar').getByText('Sign in')
+		).toBeVisible();
 	} finally {
 		if (startCommandProcess.pid !== undefined) {
 			kill(startCommandProcess.pid);

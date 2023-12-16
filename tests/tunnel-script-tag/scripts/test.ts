@@ -9,7 +9,17 @@ import { defineTestEnvironment } from '@-/test-environment';
 await getEnvVariables();
 
 await cli.pnpm(
-	'exec vitest run --pool=forks --poolOptions.forks.singleFork=true -t=gatsby --reporter=dot',
+	[
+		'exec',
+		'vitest',
+		'run',
+		'--pool=forks',
+		'--poolOptions.forks.singleFork=true',
+		'--poolOptions.threads.singleThread=true',
+		'--poolOptions.threads.isolate=false',
+		'--reporter=dot',
+		...process.argv.slice(2)
+	],
 	{
 		stdio: 'inherit',
 		cwd: monorepoDirpath,
