@@ -12,7 +12,7 @@ export default defineProjectConfig({
 	},
 	async getStartCommand({ port }) {
 		return {
-			command: `${await cli.bun.getExecutablePath()} run start`,
+			command: `${await cli.npm.getExecutablePath()} run start`,
 			env: {
 				NODE_ENV: 'development',
 				PORT: String(port)
