@@ -27,7 +27,6 @@ export default defineProjectConfig({
 			to: [
 				"import { TunnelToolbar } from '@tunnel/nextjs'\n",
 				outdent`
-					<html lang="en">
 					<body className={inter.className}>
 						<TunnelToolbar
 							projectId=${JSON.stringify(projectId)}

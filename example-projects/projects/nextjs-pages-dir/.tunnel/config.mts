@@ -22,16 +22,20 @@ export default defineProjectConfig({
 		const replaceInFile = getReplaceInFile({ projectDirpath });
 		await addDependency({ replaceInFile, packageName: '@tunnel/nextjs' });
 		await replaceInFile({
-			files: 'pages/_document.tsx',
-			from: [/^/, '<body>'],
+			files: 'pages/_app.tsx',
+			from: [/^/, 'return <Component {...pageProps} />'],
 			to: [
 				"import { TunnelToolbar } from '@tunnel/nextjs'\n",
 				outdent`
-					<body>
-						<TunnelToolbar
-							projectId=${JSON.stringify(projectId)}
-							branch=${JSON.stringify(branch)}
-						/>
+					return (
+						<>
+							<Component {...pageProps} />
+							<TunnelToolbar
+								projectId=${JSON.stringify(projectId)}
+								branch=${JSON.stringify(branch)}
+							/>
+						</>
+					)
 				`
 			]
 		});
